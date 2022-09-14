@@ -25,7 +25,10 @@ function App() {
 
   useEffect(() => {
     axios.get(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${from}.json`)
-  }, [])
+   .then((res) => {
+      setInfo(res.data[from]);
+    })
+  }, [from]);
 
   useEffect(() => {
     setOptions(Object.keys(info));
@@ -42,7 +45,7 @@ function App() {
     setFrom(to);
     setTo(temp);
   }
-
+  console.log(info)
   return (
     <div className="App">
       {/* <Table allData = {data} /> */}
